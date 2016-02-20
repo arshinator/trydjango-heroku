@@ -12,13 +12,20 @@ An utterly fantastic project template for Django 1.9.
 
 ## Requirments
 
-dj-database-url==0.4.0
-Django==1.9.2
-gunicorn==19.4.5
-psycopg2==2.6.1
-whitenoise==2.0.6
-django-crispy-forms==1.6.0
-django-registration-redux==1.3
+dj-database-url - 0.4.0
+
+Django - 1.9.2
+
+gunicorn - 19.4.5
+
+psycopg2 - 2.6.1
+
+whitenoise - 2.0.6
+
+django-crispy-forms - 1.6.0
+
+django-registration-redux - 1.3
+
 python-3.5.1
 
 ## How to Use
@@ -60,59 +67,11 @@ Create an app on Heroku, which prepares Heroku to receive your source code:
 
 $ heroku create
 
-Creating lit-bastion-5032 in organization heroku... done, stack is cedar-14
-http://lit-bastion-5032.herokuapp.com/ | https://git.heroku.com/lit-bastion-5032.git
-Git remote heroku added
-When you create an app, a git remote (called heroku) is also created and associated with your local git repository.
-Heroku generates a random name (in this case lit-bastion-5032) for your app, or you can pass a parameter to specify your own app name.
-Now deploy your code:
+
 
 $ git push heroku master
 
-Counting objects: 232, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (217/217), done.
-Writing objects: 100% (232/232), 29.64 KiB | 0 bytes/s, done.
-Total 232 (delta 118), reused 0 (delta 0)
-remote: Compressing source files... done.
-remote: Building source:
-remote:
-remote: -----> Python app detected
-remote: -----> Installing python-3.5.1
-remote:      $ pip install -r requirements.txt
-remote:        Collecting dj-database-url==0.4.0 (from -r requirements.txt (line 1))
-remote:          Downloading dj-database-url-0.4.0.tar.gz
-remote:        Collecting Django==1.9.2 (from -r requirements.txt (line 2))
-remote:          Downloading Django-1.9.2-py2.py3-none-any.whl (6.6MB)
-remote:        Collecting gunicorn==19.4.5 (from -r requirements.txt (line 3))
-remote:          Downloading gunicorn-19.4.5-py2.py3-none-any.whl (112kB)
-remote:        Collecting psycopg2==2.6.1 (from -r requirements.txt (line 4))
-remote:          Downloading psycopg2-2.6.1.tar.gz (371kB)
-remote:        Collecting whitenoise==2.0.6 (from -r requirements.txt (line 5))
-remote:          Downloading whitenoise-2.0.6-py2.py3-none-any.whl
-remote:        Installing collected packages: dj-database-url, Django, gunicorn, psycopg2, whitenoise
-remote:          Running setup.py install for dj-database-url: started
-remote:            Running setup.py install for dj-database-url: finished with status 'done'
-remote:          Running setup.py install for psycopg2: started
-remote:            Running setup.py install for psycopg2: finished with status 'done'
-remote:        Successfully installed Django-1.9.2 dj-database-url-0.4.0 gunicorn-19.4.5 psycopg2-2.6.1 whitenoise-2.0.6
-remote:
-remote:      $ python manage.py collectstatic --noinput
-remote:        58 static files copied to '/app/gettingstarted/staticfiles', 58 post-processed.
-remote:
-remote: -----> Discovering process types
-remote:        Procfile declares types -> web
-remote:
-remote: -----> Compressing...
-remote:        Done: 39.3M
-remote: -----> Launching...
-remote:        Released v4
-remote:        http://lit-bastion-5032.herokuapp.com/ deployed to Heroku
-remote:
-remote: Verifying deploy... done.
-To git@heroku.com:lit-bastion-5032.git
- * [new branch]      master -> master
-While the deployment is happening, you may see a syntax error during the install for gunicorn about invalid syntax for the line yield from self.wsgi.close(). That error can be ignored.
+
 The application is now deployed. Ensure that at least one instance of the app is running:
 
 $ heroku ps:scale web=1
