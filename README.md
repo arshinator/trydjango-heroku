@@ -1,43 +1,122 @@
-# Heroku Django Starter Template
+# Heroku Try Django Website
 
-An utterly fantastic project starter template for Django 1.9.
+An utterly fantastic project template for Django 1.9.
 
 ## Features
 
 - Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
 - Enhancements to Django's static file serving functionality via WhiteNoise
+- User login page
+- User Sign Up page
+- Contact Us page
+
+## Requirments
+
+dj-database-url==0.4.0
+Django==1.9.2
+gunicorn==19.4.5
+psycopg2==2.6.1
+whitenoise==2.0.6
+django-crispy-forms==1.6.0
+django-registration-redux==1.3
+python-3.5.1
 
 ## How to Use
 
-To use this project, follow these steps:
+This tutorial will have you deploying the Try Django in minutes.
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+Hang on for a few more minutes to learn how it all works, so you can make the most out of Heroku.
 
-## Creating Your Project
+The tutorial assumes that you have:
+a free Heroku account.
 
-Using this template to create a new Django app is easy::
+Python installed locally - see the installation guides for OS X, Windows, and Linux.
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+Setuptools and Pip installed locally. See the Python install guides above for installation instructions.
 
-You can replace ``helloworld`` with your desired project name.
+Virtualenv installed locally. Accomplish this by running pip install virtualenv.
 
-## Deployment to Heroku
+Postgres installed locally, if running the app locally.
 
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
+## Setup
 
-    $ heroku create
-    $ git push heroku master
+https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 
-    $ heroku run python manage.py migrate
+## Prepare the app
 
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
+In this step, you will prepare a simple application that can be deployed.
 
-## Further Reading
+Execute the following commands to clone the sample application:
 
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+$ git clone https://github.com/arshinator/trydjango-heroku.git
+$ cd trydjango-heroku
+
+You now have a functioning git repository that contains a simple application as well as a requirements.txt file, which is used by Python’s dependency manager, Pip.
+
+## Deploy the app
+
+In this step you will deploy the app to Heroku.
+Create an app on Heroku, which prepares Heroku to receive your source code:
+
+$ heroku create
+
+Creating lit-bastion-5032 in organization heroku... done, stack is cedar-14
+http://lit-bastion-5032.herokuapp.com/ | https://git.heroku.com/lit-bastion-5032.git
+Git remote heroku added
+When you create an app, a git remote (called heroku) is also created and associated with your local git repository.
+Heroku generates a random name (in this case lit-bastion-5032) for your app, or you can pass a parameter to specify your own app name.
+Now deploy your code:
+
+$ git push heroku master
+
+Counting objects: 232, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (217/217), done.
+Writing objects: 100% (232/232), 29.64 KiB | 0 bytes/s, done.
+Total 232 (delta 118), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Python app detected
+remote: -----> Installing python-3.5.1
+remote:      $ pip install -r requirements.txt
+remote:        Collecting dj-database-url==0.4.0 (from -r requirements.txt (line 1))
+remote:          Downloading dj-database-url-0.4.0.tar.gz
+remote:        Collecting Django==1.9.2 (from -r requirements.txt (line 2))
+remote:          Downloading Django-1.9.2-py2.py3-none-any.whl (6.6MB)
+remote:        Collecting gunicorn==19.4.5 (from -r requirements.txt (line 3))
+remote:          Downloading gunicorn-19.4.5-py2.py3-none-any.whl (112kB)
+remote:        Collecting psycopg2==2.6.1 (from -r requirements.txt (line 4))
+remote:          Downloading psycopg2-2.6.1.tar.gz (371kB)
+remote:        Collecting whitenoise==2.0.6 (from -r requirements.txt (line 5))
+remote:          Downloading whitenoise-2.0.6-py2.py3-none-any.whl
+remote:        Installing collected packages: dj-database-url, Django, gunicorn, psycopg2, whitenoise
+remote:          Running setup.py install for dj-database-url: started
+remote:            Running setup.py install for dj-database-url: finished with status 'done'
+remote:          Running setup.py install for psycopg2: started
+remote:            Running setup.py install for psycopg2: finished with status 'done'
+remote:        Successfully installed Django-1.9.2 dj-database-url-0.4.0 gunicorn-19.4.5 psycopg2-2.6.1 whitenoise-2.0.6
+remote:
+remote:      $ python manage.py collectstatic --noinput
+remote:        58 static files copied to '/app/gettingstarted/staticfiles', 58 post-processed.
+remote:
+remote: -----> Discovering process types
+remote:        Procfile declares types -> web
+remote:
+remote: -----> Compressing...
+remote:        Done: 39.3M
+remote: -----> Launching...
+remote:        Released v4
+remote:        http://lit-bastion-5032.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To git@heroku.com:lit-bastion-5032.git
+ * [new branch]      master -> master
+While the deployment is happening, you may see a syntax error during the install for gunicorn about invalid syntax for the line yield from self.wsgi.close(). That error can be ignored.
+The application is now deployed. Ensure that at least one instance of the app is running:
+
+$ heroku ps:scale web=1
+
+Now visit the app at the URL generated by its app name. As a handy shortcut, you can open the website as follows:
+
+$ heroku open
